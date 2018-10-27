@@ -17,10 +17,12 @@ def last_update(data):
     total_updates = len(results) - 1
     return results[total_updates]
 
+
 def send_mess(chat, text):
     params = {'chat_id': chat, 'text': text}
     response = requests.post(url + 'sendMessage', data=params)
     return response
+
 
 def start():
     pass
@@ -31,7 +33,11 @@ def listen(deltatime=0.0):
     return last_update(get_updates_json(url))
 
 
-last_update_id = listen()
+def get_last_update_id():
+    return Message.get_update_id(listen())
+
+
+last_update_id = get_last_update_id()
 telebot = Telebot()
 
 while True:
@@ -39,4 +45,4 @@ while True:
     if message.update_id != last_update_id:
         response = telebot.cmd_input(message.text)
         send_mess(message.chat_id, response)
-        last_update_id = Message.get_update_id(listen())
+        last_update_id = get_last_update_id()
