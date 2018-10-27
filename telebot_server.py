@@ -24,10 +24,6 @@ def send_mess(chat, text):
     return response
 
 
-def start():
-    pass
-
-
 def listen(deltatime=0.0):
     time.sleep(deltatime)
     return last_update(get_updates_json(url))
@@ -37,12 +33,18 @@ def get_last_update_id():
     return Message.get_update_id(listen())
 
 
-last_update_id = get_last_update_id()
-telebot = Telebot()
+def start():
+    last_update_id = get_last_update_id()
+    telebot = Telebot()
 
-while True:
-    message = Message(listen(0.5))
-    if message.update_id != last_update_id:
-        response = telebot.cmd_input(message.text)
-        send_mess(message.chat_id, response)
-        last_update_id = get_last_update_id()
+    while True:
+        message = Message(listen(0.5))
+        if message.update_id != last_update_id:
+            response = telebot.cmd_input(message.text)
+            send_mess(message.chat_id, response)
+            last_update_id = get_last_update_id()
+
+
+
+
+
