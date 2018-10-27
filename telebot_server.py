@@ -1,8 +1,8 @@
-
 import requests
 import time
 
 from telebot import Telebot
+from message_manager.manager import Message
 
 url = "https://api.telegram.org/bot627640438:AAEMONrxNiMFDVVMWA2e3Ss902tsp748Pgs/"
 
@@ -28,7 +28,11 @@ def listen(deltatime):
 
 
 telebot = Telebot()
+
 while True:
-    print(listen(0.5))
-
-
+    last_update_id = None
+    message = listen(0.5)
+    if message != last_update_id:
+        telebot.cmd_input(Message.get_text(message))
+    else:
+        pass
