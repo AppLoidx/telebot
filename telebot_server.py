@@ -35,7 +35,8 @@ last_update_id = listen()
 telebot = Telebot()
 
 while True:
-    message = listen(0.5)
-    if message != last_update_id:
-        response = telebot.cmd_input(Message.get_text(message))
-        send_mess(Message.get_chat_id(message), response)
+    message = Message(listen(0.5))
+    if message.update_id != last_update_id:
+        response = telebot.cmd_input(message.text)
+        send_mess(message.chat_id, response)
+        last_update_id = Message.get_update_id(listen())
