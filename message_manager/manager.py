@@ -12,3 +12,7 @@ class Message:
     @staticmethod
     def get_text(message_json):
         return message_json['message']['text']
+
+    @staticmethod
+    def get_chat_id(message_json):
+        return message_json['message']['chat']['id']
