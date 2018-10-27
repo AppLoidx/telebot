@@ -2,6 +2,8 @@ from lilly import Lilly
 import requests
 import time
 
+from telebot import Telebot
+
 url = "https://api.telegram.org/bot627640438:AAEMONrxNiMFDVVMWA2e3Ss902tsp748Pgs/"
 
 
@@ -25,7 +27,8 @@ def listen(deltatime):
     return last_update(get_updates_json(url))
 
 
-lilly = Lilly()
+telebot = Telebot()
 while True:
     print(listen(0.5))
+
 
