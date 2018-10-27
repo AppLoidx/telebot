@@ -1,6 +1,7 @@
 import random
 import os
 
+
 class GetQuestion:
 
     answers_file = None
