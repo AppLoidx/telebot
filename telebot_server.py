@@ -1,4 +1,4 @@
-from lilly import Lilly
+
 import requests
 import time
 
