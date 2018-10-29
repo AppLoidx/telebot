@@ -43,7 +43,8 @@ class ScheduleFromFile:
 
         return result
 
-    def get_schedule(self, next_day_value: int = 0):
+    @staticmethod
+    def get_schedule(next_day_value: int = 0):
         """
 
         :param next_day_value: number of days to skip
@@ -56,4 +57,4 @@ class ScheduleFromFile:
         day = Day()
         today_day, week_parity = day.get_day_parity(next_day_value)
 
-        return self.get_schedule_from_file(sh_filename, today_day, week_parity)
+        return ScheduleFromFile.get_schedule_from_file(sh_filename, today_day, week_parity)

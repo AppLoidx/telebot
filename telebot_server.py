@@ -3,8 +3,9 @@ import time
 
 from telebot import Telebot
 from message_manager.manager import Message
+from config import telegram_api_token
 
-url = "https://api.telegram.org/bot627640438:AAEMONrxNiMFDVVMWA2e3Ss902tsp748Pgs/"
+url = telegram_api_token
 
 
 def get_updates_json(request):
@@ -41,6 +42,7 @@ def start():
         message = Message(listen(0.5))
         if message.update_id != last_update_id:
             response = telebot.cmd_input(message.text)
+            print(message.text)
             send_mess(message.chat_id, response)
             last_update_id = get_last_update_id()
 
